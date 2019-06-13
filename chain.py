@@ -5,8 +5,8 @@ from .crypto import hashChain, bytes2str, str2bytes
 from .setting import ADDRESS_LENGTH, ADDRESS_CHECKSUM_LENGTH, DEFAULT_SUPER_NODE_NUM
 from .error import NetworkException
 from .wrapper import Wrapper
-from pyvsystems import is_offline
-import pyvsystems
+from pytvspos import is_offline
+import pytvspos
 
 
 class Chain(object):
