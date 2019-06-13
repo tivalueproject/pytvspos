@@ -1,4 +1,4 @@
-# pyvsystems
+# pytvspos
 A python wrapper for vsys api.
 
 For more detail, please refer:
@@ -10,34 +10,34 @@ For more detail, please refer:
 ## Install 
 1. clone the repo under you workspace
 ```git clone https://github.com/virtualeconomy/pyvsystems.git```
-2. install packages in pyvsystems/requirement.txt by 
-```pip install -r ./pyvsystems/requirements.txt```
-3. Then you can ```import pyvsystems``` in your workspace
+2. install packages in pytvspos/requirement.txt by 
+```pip install -r ./pytvspos/requirements.txt```
+3. Then you can ```import pytvspos``` in your workspace
 
 ## Usage
 
 ### chain object
 1. For testnet:
     ```python
-    import pyvsystems as pv
+    import pytvspos as pv
     ts_chain = pv.testnet_chain()
     ```
 2. For default chain:
     ```python
-    import pyvsystems as pv
+    import pytvspos as pv
     main_chain = pv.default_chain()
     ```
 
 3. For custom api node:
     ```python
-    import pyvsystems as pv
+    import pytvspos as pv
     custom_wrapper = pv.create_api_wrapper('http://<full node ip>:9922', api_key='')
     ts_chain = pv.testnet_chain(custom_wrapper)
     ```
 
 4. For completely custom chain:
     ```python
-    import pyvsystems as pv
+    import pytvspos as pv
     custom_wrapper = pv.create_api_wrapper('http://<full node ip>:9922', api_key='')
     t_chain = pv.Chain(chain_name='testnet', chain_id='T', address_version=5, api_wrapper=custom_wrapper)
     custom_wrapper2 = pv.create_api_wrapper('http://<full node ip>:9922', api_key='')
@@ -76,22 +76,22 @@ For more detail, please refer:
 ### address object
 1. constructed by seed
     ```python
-    from pyvsystems import Account
+    from pytvspos import Account
     my_address = Account(chain=ts_chain, seed='<your seed>', nonce=0)
     ```
 2. constructed by private key
     ```python
-    from pyvsystems import Account
+    from pytvspos import Account
     my_address = Account(chain=ts_chain, private_key='<your base58 private key>')
     ```
 3. constructed by public key
     ```python
-    from pyvsystems import Account
+    from pytvspos import Account
     recipient = Account(chain=ts_chain, public_key='<base58 public key>')
     ```
 4. constructed by wallet address
     ```python
-    from pyvsystems import Account
+    from pytvspos import Account
     recipient = Account(chain=ts_chain, address='<base58 wallet address>')
     ```
  
