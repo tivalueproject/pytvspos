@@ -32,19 +32,19 @@ For more detail, please refer:
 3. For custom api node:
     ```python
     import pytvspos as pv
-    custom_wrapper = pv.create_api_wrapper('http://<full node ip>:9922', api_key='')
+    custom_wrapper = pv.create_api_wrapper('http://<full node ip>:9122', api_key='')
     ts_chain = pv.testnet_chain(custom_wrapper)
     ```
 
 4. For completely custom chain:
     ```python
     import pytvspos as pv
-    custom_wrapper = pv.create_api_wrapper('http://<full node ip>:9922', api_key='')
-    t_chain = pv.Chain(chain_name='testnet', chain_id='T', address_version=5, api_wrapper=custom_wrapper)
-    custom_wrapper2 = pv.create_api_wrapper('http://<full node ip>:9922', api_key='')
-    m_chain = pv.Chain(chain_name='mainnet', chain_id='M', address_version=5, api_wrapper=custom_wrapper2)
-    custom_wrapper3 = pv.create_api_wrapper('http://<full node ip>:9922', api_key='')
-    c_chain = pv.Chain(chain_name='mychain', chain_id='C', address_version=1, api_wrapper=custom_wrapper3)
+    custom_wrapper = pv.create_api_wrapper('http://<full node ip>:9122', api_key='')
+    t_chain = pv.Chain(chain_name='testnet', chain_id='T', address_version=29, api_wrapper=custom_wrapper)
+    custom_wrapper2 = pv.create_api_wrapper('http://<full node ip>:9122', api_key='')
+    m_chain = pv.Chain(chain_name='mainnet', chain_id=';', address_version=29, api_wrapper=custom_wrapper2)
+    custom_wrapper3 = pv.create_api_wrapper('http://<full node ip>:9122', api_key='')
+    c_chain = pv.Chain(chain_name='mychain', chain_id='C', address_version=29, api_wrapper=custom_wrapper3)
     ```
 
 ### chain api list
