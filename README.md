@@ -1,15 +1,15 @@
 # pytvspos
-A python wrapper for vsys api.
+A python wrapper for tv api.
 
 For more detail, please refer:
 
-[PYVSYSTEMS User Guide Specification (English)](https://github.com/virtualeconomy/pyvsystems/wiki/PYVSYSTEMS-User-Guide-Specification-%28English%29)
+[PYTVSPOS User Guide Specification (English)](https://github.com/tivalueproject/pytvspos/wiki/PYTVSPOS-User-Guide-Specification-(English))
 
-[PYVSYSTEMS 使用详细指南(中文)](https://github.com/virtualeconomy/pyvsystems/wiki/PYVSYSTEMS-使用详细指南%28中文%29)
+[PYTVSPOS  使用详细指南(中文)](https://github.com/tivalueproject/pytvspos/wiki/PYTVSPOS-%E4%BD%BF%E7%94%A8%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97(%E4%B8%AD%E6%96%87))
 
 ## Install 
 1. clone the repo under you workspace
-```git clone https://github.com/virtualeconomy/pyvsystems.git```
+```git clone https://github.com/tivalueproject/pytvspos```
 2. install packages in pytvspos/requirement.txt by 
 ```pip install -r ./pytvspos/requirements.txt```
 3. Then you can ```import pytvspos``` in your workspace
@@ -107,16 +107,16 @@ For more detail, please refer:
     ```
 2. Send payment transaction
     ```python
-    # send payment (100000000 = 1 VSYS)
+    # send payment (100000000 = 1 TV)
     my_address.send_payment(recipient, amount=100000000)
     ```
 3. Send and cancel lease transaction
     ```python
-    # send lease (100000000 = 1 VSYS)
+    # send lease (100000000 = 1 TV)
     response = my_address.lease(recipient, amount=100000000)
     tx_id = response["id"]
     # cancel lease
     my_address.lease_cancel(tx_id)
     ```
     
-[Sample code](https://github.com/virtualeconomy/pyvsystems/wiki/PYVSYSTEMS-User-Guide-Specification-%28English%29#sample-code) for reference
+[Sample code](https://github.com/tivalueproject/pytvspos/wiki/PYTVSPOS-User-Guide-Specification-(English)#sample-code) for reference
