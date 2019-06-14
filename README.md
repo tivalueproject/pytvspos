@@ -3,9 +3,10 @@ A python wrapper for tv api.
 
 For more detail, please refer:
 
-[PYTVSPOS User Guide Specification (English)](https://github.com/tivalueproject/pytvspos/wiki/PYTVSPOS-User-Guide-Specification-(English))
+[PYTVSPOS  User Guide Specification (English)](https://github.com/tivalueproject/pytvspos/wiki/PYTVSPOS-User-Guide-Specification-(English))
 
 [PYTVSPOS  使用详细指南(中文)](https://github.com/tivalueproject/pytvspos/wiki/PYTVSPOS-%E4%BD%BF%E7%94%A8%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97(%E4%B8%AD%E6%96%87))
+
 
 ## Install 
 1. clone the repo under you workspace
