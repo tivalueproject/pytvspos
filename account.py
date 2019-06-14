@@ -54,7 +54,7 @@ class Account(object):
 
     def balance(self, confirmations=0):
         if is_offline():
-            pyvsystems.throw_error("Cannot check balance in offline mode.", NetworkException)
+            pytvspos.throw_error("Cannot check balance in offline mode.", NetworkException)
             return 0
         try:
             confirmations_str = '' if confirmations == 0 else '/%d' % confirmations
@@ -399,7 +399,7 @@ class Account(object):
 
     def get_tx_history(self, limit=100, type_filter=PAYMENT_TX_TYPE):
         if is_offline():
-            pyvsystems.throw_error("Cannot check history in offline mode.", NetworkException)
+            pytvspos.throw_error("Cannot check history in offline mode.", NetworkException)
             return []
         if not self.address:
             msg = 'Address required'
@@ -421,7 +421,7 @@ class Account(object):
         Return None if Transaction does not exist!
         """
         if is_offline():
-            pyvsystems.throw_error("Cannot check transaction in offline mode.", NetworkException)
+            pytvspos.throw_error("Cannot check transaction in offline mode.", NetworkException)
             return None
         utx_res = self.chain.unconfirmed_tx(tx_id)
         if "id" in utx_res:
@@ -449,7 +449,7 @@ class Account(object):
 
     def check_node(self, other_node_host=None):
         if is_offline():
-            pyvsystems.throw_error("Cannot check node in offline mode.", NetworkException)
+            pytvspos.throw_error("Cannot check node in offline mode.", NetworkException)
             return False
         if other_node_host:
             res = self.chain.check_with_other_node(other_node_host)
