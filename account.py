@@ -128,7 +128,7 @@ class Account(object):
             msg = 'Wrong fee scale (currently, fee scale must be %d).' % DEFAULT_FEE_SCALE
             pytvspos.throw_error(msg, InvalidParameterException)
         elif not is_offline() and self.balance() < amount + tx_fee:
-            msg = 'Insufficient VSYS balance'
+            msg = 'Insufficient TV balance'
             pytvspos.throw_error(msg, InsufficientBalanceException)
         else:
             if timestamp == 0:
@@ -173,7 +173,7 @@ class Account(object):
             msg = 'Wrong fee scale (currently, fee scale must be %d).' % DEFAULT_FEE_SCALE
             pytvspos.throw_error(msg, InvalidParameterException)
         elif not is_offline() and self.balance() < amount + tx_fee:
-            msg = 'Insufficient VSYS balance'
+            msg = 'Insufficient TV balance'
             pytvspos.throw_error(msg, InsufficientBalanceException)
         else:
             if timestamp == 0:
@@ -212,7 +212,7 @@ class Account(object):
             msg = 'Wrong fee scale (currently, fee scale must be %d).' % DEFAULT_FEE_SCALE
             pytvspos.throw_error(msg, InvalidParameterException)
         elif not is_offline() and self.balance() < tx_fee:
-            msg = 'Insufficient VSYS balance'
+            msg = 'Insufficient TV balance'
             pytvspos.throw_error(msg, InsufficientBalanceException)
         else:
             if timestamp == 0:
@@ -274,7 +274,7 @@ class Account(object):
         balance_detail = self.get_info()
         min_effective_balance = MIN_CONTEND_SLOT_BALANCE + tx_fee
         if balance_detail["effective"] < min_effective_balance:
-            msg = 'Insufficient VSYS balance. (The effective balance must be >= %d)' % min_effective_balance
+            msg = 'Insufficient TV balance. (The effective balance must be >= %d)' % min_effective_balance
             pytvspos.throw_error(msg, InvalidParameterException)
             return False
         slot_info = self.chain.slot_info(slot_id)
@@ -303,7 +303,7 @@ class Account(object):
             msg = 'Wrong fee scale (currently, fee scale must be %d).' % DEFAULT_FEE_SCALE
             pytvspos.throw_error(msg, InvalidParameterException)
         elif not is_offline() and self.balance() < tx_fee:
-            msg = 'Insufficient VSYS balance'
+            msg = 'Insufficient TV balance'
             pytvspos.throw_error(msg, InsufficientBalanceException)
         else:
             if timestamp == 0:
@@ -338,7 +338,7 @@ class Account(object):
             msg = 'Wrong fee scale (currently, fee scale must be %d).' % DEFAULT_FEE_SCALE
             pytvspos.throw_error(msg, InvalidParameterException)
         elif not is_offline() and self.balance() < tx_fee:
-            msg = 'Insufficient VSYS balance'
+            msg = 'Insufficient TV balance'
             pytvspos.throw_error(msg, InsufficientBalanceException)
         else:
             if timestamp == 0:
