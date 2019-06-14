@@ -32,7 +32,7 @@ For more detail, please refer:
 3. For custom api node:
     ```python
     import pytvspos as pv
-    custom_wrapper = pv.create_api_wrapper('http://<full node ip>:9922', api_key='')
+    custom_wrapper = pv.create_api_wrapper('http://<full node ip>:9122', api_key='')
     ts_chain = pv.testnet_chain(custom_wrapper)
     ```
 
