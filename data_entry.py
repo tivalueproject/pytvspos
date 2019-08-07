@@ -2,7 +2,7 @@ from .contract_build import *
 from .error import *
 from .deser import *
 from .setting import *
-import pyvsystems
+import pytvspos
 
 
 def init_data_stack_gen(max, unity, desc):
@@ -118,14 +118,14 @@ def create_data(list_data_tuple):
                 custom_data.append(DataEntry(data[0], bytes([6])))
         else:
             msg = 'Invalid Data Entry'
-            pyvsystems.throw_error(msg, InvalidParameterException)
+            pytvspos.throw_error(msg, InvalidParameterException)
     return custom_data
 
 
 def data_entry_from_base58_str(str_object):
     if not type(str_object) is str:
         msg = 'Input must be string'
-        pyvsystems.throw_error(msg, InvalidParameterException)
+        pytvspos.throw_error(msg, InvalidParameterException)
     else:
         base58_str = base58.b58decode(str_object)
         return data_entries_from_bytes(base58_str)
@@ -165,10 +165,10 @@ def parse_data_entry_array_size(bytes_object, start_position):
 def data_entry_from_bytes(bytes_object):
     if len(bytes_object) == 0:
         msg = 'Invalid Data Entry'
-        pyvsystems.throw_error(msg, InvalidParameterException)
+        pytvspos.throw_error(msg, InvalidParameterException)
     elif not type(bytes_object) is bytes:
         msg = 'Input must be bytes'
-        pyvsystems.throw_error(msg, InvalidParameterException)
+        pytvspos.throw_error(msg, InvalidParameterException)
     elif bytes_object[0:1] == Type.public_key:
         return DataEntry(bytes2str(base58.b58encode(bytes_object[1:])), bytes_object[0:1])
     elif bytes_object[0:1] == Type.address:
@@ -189,7 +189,7 @@ class DataEntry:
     def __init__(self, data, data_type):
         if not type(data_type) is bytes:
             msg = 'Data Type must be bytes'
-            pyvsystems.throw_error(msg, InvalidParameterException)
+            pytvspos.throw_error(msg, InvalidParameterException)
         if data_type == Type.public_key:
             self.data_bytes = base58.b58decode(data)
             self.data_type = 'public_key'
@@ -205,7 +205,7 @@ class DataEntry:
         elif data_type == Type.short_text:
             if len(str2bytes(data)) > MAX_ATTACHMENT_SIZE:
                 msg = 'description length must be <= %d' % MAX_ATTACHMENT_SIZE
-                pyvsystems.throw_error(msg, InvalidParameterException)
+                pytvspos.throw_error(msg, InvalidParameterException)
             else:
                 self.data_bytes = serialize_array(str2bytes(data))
                 self.data_type = 'short_text'
@@ -214,7 +214,7 @@ class DataEntry:
             self.data_type = 'contract_account'
         else:
             msg = 'Invalid Data Entry'
-            pyvsystems.throw_error(msg, InvalidParameterException)
+            pytvspos.throw_error(msg, InvalidParameterException)
         self.data = data
         self.bytes = data_type + self.data_bytes
 

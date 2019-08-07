@@ -1,10 +1,10 @@
 from .crypto import *
 from .error import *
-import pyvsystems
+import pytvspos
 from .opcode import *
 from .deser import *
 from .contract_build import *
-from pyvsystems.contract_meta import ContractMeta as meta
+from pytvspos.contract_meta import ContractMeta as meta
 
 
 class ContractTranslator(object):
@@ -16,7 +16,7 @@ class ContractTranslator(object):
         execute_fun = all_info[1]
         if len(functions_opcode) != (len(trigger) + len(execute_fun)):
             msg = 'Functions are not well defined in opc and textual!'
-            pyvsystems.throw_error(msg, InvalidParameterException)
+            pytvspos.throw_error(msg, InvalidParameterException)
         else:
             functions_spec = copy.deepcopy([trigger[0]] + execute_fun)
             for i in range(len(functions_opcode)):
@@ -56,7 +56,7 @@ class ContractTranslator(object):
             list_para = []
         if len(list_para_type) != len(list_para):
             msg = 'List of parameter is not right!'
-            pyvsystems.throw_error(msg, InvalidParameterException)
+            pytvspos.throw_error(msg, InvalidParameterException)
         else:
             if function_type == meta.function_type_map['000']:
                 prefix = "trigger"
@@ -95,11 +95,11 @@ class ContractTranslator(object):
         print("| ")
         list_opc_name = [self.opcode_info.function_name[opc[0] + opc[1]]
                          if len(opc) >= 2 else
-                         pyvsystems.throw_error('Opc function is not right!', InvalidParameterException)
+                         pytvspos.throw_error('Opc function is not right!', InvalidParameterException)
                          for opc in list_opc]
         if len(list_opc_name) != len(list_opc):
             msg = 'Opc function is not right!'
-            pyvsystems.throw_error(msg, InvalidParameterException)
+            pytvspos.throw_error(msg, InvalidParameterException)
         else:
             name_list = copy.deepcopy(para_name)
             for i in range(len(list_opc_name)):
@@ -114,7 +114,7 @@ class ContractTranslator(object):
         all_info = []
         if len(bytes_arrays) != 3:
             msg = 'Textual is invalid!'
-            pyvsystems.throw_error(msg, InvalidParameterException)
+            pytvspos.throw_error(msg, InvalidParameterException)
         [initializer_bytes, _] = parse_arrays(bytes_arrays[0])
         initializer_spec = self.specification_from_bytes(initializer_bytes, 0)
         print("Initializer Function:")
@@ -182,7 +182,7 @@ class ContractTranslator(object):
         for items in all_info[1:]:
             if len(items) != 4:
                 msg = 'Textual in function is invalid!'
-                pyvsystems.throw_error(msg, InvalidParameterException)
+                pytvspos.throw_error(msg, InvalidParameterException)
             function_id = items[0]
             return_type = items[1]
             function_name = items[2]

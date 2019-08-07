@@ -2,8 +2,8 @@ import json
 import math
 import time
 
-import pyvsystems
-from pyvsystems import is_offline
+import pytvspos
+from pytvspos import is_offline
 
 from .contract_meta import ContractMeta as meta
 from .data_entry import serialize_data
@@ -19,18 +19,18 @@ class Contract(object):
     def show_contract_function(self, bytes_string='', contract_id='', wrapper=None):
         if not bytes_string and not contract_id:
             msg = 'Input contract is empty!'
-            pyvsystems.throw_error(msg, InvalidParameterException)
+            pytvspos.throw_error(msg, InvalidParameterException)
 
         if bytes_string and contract_id:
             msg = 'Multiple input in contract!'
-            pyvsystems.throw_error(msg, InvalidParameterException)
+            pytvspos.throw_error(msg, InvalidParameterException)
 
         contract_translator = ContractTranslator()
 
         if contract_id:
             if not wrapper:
                 msg = 'No wrapper information!'
-                pyvsystems.throw_error(msg, InvalidParameterException)
+                pytvspos.throw_error(msg, InvalidParameterException)
             contract_content = self.get_contract_content(wrapper, contract_id)
             bytes_string = str2bytes(contract_translator.contract_from_json(contract_content))
 
@@ -95,11 +95,11 @@ class Contract(object):
     def get_token_balance(wrapper, address, token_id):
         if not address:
             msg = 'Address required'
-            pyvsystems.throw_error(msg, MissingAddressException)
+            pytvspos.throw_error(msg, MissingAddressException)
             return None
         if token_id is None:
             msg = 'Token ID required'
-            pyvsystems.throw_error(msg, MissingTokenIdException)
+            pytvspos.throw_error(msg, MissingTokenIdException)
             return None
         resp = wrapper.request('/contract/balance/%s/%s' % (address, token_id))
 
@@ -112,7 +112,7 @@ class Contract(object):
     def get_token_info(wrapper, token_id):
         if token_id is None:
             msg = 'Token ID required'
-            pyvsystems.throw_error(msg, MissingTokenIdException)
+            pytvspos.throw_error(msg, MissingTokenIdException)
             return None
 
         resp = wrapper.request('/contract/tokenInfo/%s' % token_id)
@@ -132,22 +132,22 @@ class Contract(object):
         MIN_CONTRACT_STRING_SIZE = int(math.ceil(math.log(256) / math.log(58) * MIN_CONTRACT_BYTE_SIZE))
         if not account.privateKey:
             msg = 'Private key required'
-            pyvsystems.throw_error(msg, MissingPrivateKeyException)
+            pytvspos.throw_error(msg, MissingPrivateKeyException)
         elif len(contract) < MIN_CONTRACT_STRING_SIZE:
             msg = 'Contract String must be at least %d long' % MIN_CONTRACT_STRING_SIZE
-            pyvsystems.throw_error(msg, InvalidParameterException)
+            pytvspos.throw_error(msg, InvalidParameterException)
         elif tx_fee < DEFAULT_REGISTER_CONTRACT_FEE:
             msg = 'Transaction fee must be >= %d' % DEFAULT_REGISTER_CONTRACT_FEE
-            pyvsystems.throw_error(msg, InvalidParameterException)
+            pytvspos.throw_error(msg, InvalidParameterException)
         elif len(description) > MAX_ATTACHMENT_SIZE:
             msg = 'Attachment length must be <= %d' % MAX_ATTACHMENT_SIZE
-            pyvsystems.throw_error(msg, InvalidParameterException)
+            pytvspos.throw_error(msg, InvalidParameterException)
         elif CHECK_FEE_SCALE and fee_scale != DEFAULT_FEE_SCALE:
             msg = 'Wrong fee scale (currently, fee scale must be %d).' % DEFAULT_FEE_SCALE
-            pyvsystems.throw_error(msg, InvalidParameterException)
+            pytvspos.throw_error(msg, InvalidParameterException)
         elif not is_offline() and account.balance() < tx_fee:
             msg = 'Insufficient VSYS balance'
-            pyvsystems.throw_error(msg, InsufficientBalanceException)
+            pytvspos.throw_error(msg, InsufficientBalanceException)
         else:
             data_stack_bytes = serialize_data(data_stack)
             if timestamp == 0:
@@ -183,19 +183,19 @@ class Contract(object):
                          fee_scale=DEFAULT_FEE_SCALE, timestamp=0):
         if not account.privateKey:
             msg = 'Private key required'
-            pyvsystems.throw_error(msg, MissingPrivateKeyException)
+            pytvspos.throw_error(msg, MissingPrivateKeyException)
         elif tx_fee < DEFAULT_EXECUTE_CONTRACT_FEE:
             msg = 'Transaction fee must be >= %d' % DEFAULT_EXECUTE_CONTRACT_FEE
-            pyvsystems.throw_error(msg, InvalidParameterException)
+            pytvspos.throw_error(msg, InvalidParameterException)
         elif len(attachment) > MAX_ATTACHMENT_SIZE:
             msg = 'Attachment length must be <= %d' % MAX_ATTACHMENT_SIZE
-            pyvsystems.throw_error(msg, InvalidParameterException)
+            pytvspos.throw_error(msg, InvalidParameterException)
         elif CHECK_FEE_SCALE and fee_scale != DEFAULT_FEE_SCALE:
             msg = 'Wrong fee scale (currently, fee scale must be %d).' % DEFAULT_FEE_SCALE
-            pyvsystems.throw_error(msg, InvalidParameterException)
+            pytvspos.throw_error(msg, InvalidParameterException)
         elif not is_offline() and account.balance() < tx_fee:
             msg = 'Insufficient VSYS balance'
-            pyvsystems.throw_error(msg, InsufficientBalanceException)
+            pytvspos.throw_error(msg, InsufficientBalanceException)
         else:
             data_stack_bytes = serialize_data(data_stack)
             if timestamp == 0:

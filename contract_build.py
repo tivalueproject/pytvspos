@@ -2,8 +2,8 @@ import itertools
 import logging
 import struct
 
-from pyvsystems import deser
-from pyvsystems.contract_meta import ContractMeta as meta
+from pytvspos import deser
+from pytvspos.contract_meta import ContractMeta as meta
 
 from .crypto import *
 
