@@ -26,11 +26,11 @@ DEFAULT_CHAIN_ID = ';'
 TESTNET_CHAIN = 'testnet'
 TESTNET_CHAIN_ID = 'T'
 
-DEFAULT_TESTNET_NODE = 'https://testwallet.t.top/api/'
+DEFAULT_TESTNET_NODE = 'https://testqb.t.top/api/'
 DEFAULT_TESTNET_API_KEY = ''
 
 
-DEFAULT_NODE = 'https://wallet.t.top/api/'
+DEFAULT_NODE = 'https://qb.t.top/api/'
 DEFAULT_API_KEY = ''
 
 ADDRESS_VERSION = 29
